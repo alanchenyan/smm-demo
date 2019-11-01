@@ -27,8 +27,12 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
 
-    public JwtLoginFilter(AuthenticationManager authenticationManager) {
+
+    private long expiration;
+
+    public JwtLoginFilter(AuthenticationManager authenticationManager,long expiration) {
         this.authenticationManager = authenticationManager;
+        this.expiration=expiration;
     }
 
     @Override
@@ -52,7 +56,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain, Authentication authResult) {
         String token = Jwts.builder()
                 .setSubject(((User) authResult.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(SignatureAlgorithm.HS512, "PrivateSecret") //私钥 salt
                 .compact();
 

@@ -1,4 +1,4 @@
-package com.alanchen.smmdemo.test.config;
+package com.alanchen.smmdemo.boss.config;
 
 import com.alanchen.smmdemo.framework.swagger.GlobalSwaggerWebMvcConfig;
 import org.springframework.context.annotation.Configuration;

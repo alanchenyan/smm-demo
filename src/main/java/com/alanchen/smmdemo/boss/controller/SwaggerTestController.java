@@ -1,4 +1,4 @@
-package com.alanchen.smmdemo.test.controller;
+package com.alanchen.smmdemo.boss.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

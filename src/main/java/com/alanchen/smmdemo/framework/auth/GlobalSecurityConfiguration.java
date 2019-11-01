@@ -17,9 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @description
  * @date 2019-10-31
  */
-@Configuration
-@Order(SecurityProperties.BASIC_AUTH_ORDER)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//@Configuration
+//@Order(SecurityProperties.BASIC_AUTH_ORDER)
+public class GlobalSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final String DEV_ENVIRONMENT = "dev";
 
@@ -28,6 +28,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     //@Value("${spring.profiles.active}")
     private String active = "prod";
+
+    protected long expiration(){
+        return 8 * 1000;
+    }
+
 
     /**
      * 密码加密及校验方式
@@ -74,7 +79,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/auth/green-channel").permitAll()
                     .anyRequest().authenticated()
                     .and()
-                    .addFilter(new JwtLoginFilter(authenticationManager()))
+                    .addFilter(new JwtLoginFilter(authenticationManager(),expiration()))
                     .addFilter(new JwtAuthenticationFilter(authenticationManager()));
         }
 

@@ -1,4 +1,4 @@
-package com.alanchen.smmdemo.test.auth;
+package com.alanchen.smmdemo.boss.auth;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
